@@ -15,16 +15,19 @@ class ActionGetWeather(Action):
         domain: Dict[Text, Any]
     ) -> List[Dict[Text, Any]]:
 
-        # you might prefer to pull this from an entity or a slot
-        city = tracker.latest_message.get("text")
-        weather_data = self.get_weather(city)
+        city_slot = next(tracker.get_latest_entity_values("city"), None)
+        city = tracker.get_slot("city") or city_slot
 
-        if weather_data and weather_data.get("main"):
-            temp = weather_data["main"]["temp"]
-            desc = weather_data["weather"][0]["description"]
-            response = f"The weather in {city} is {temp}°C with {desc}."
+        if city:
+            weather_data = self.get_weather(city)
+            if weather_data and weather_data.get("cod") == 200:
+                temp = weather_data["main"]["temp"]
+                desc = weather_data["weather"][0]["description"]
+                response = f"A {city} ci sono {temp}°C con {desc}."
+            else:
+                response = f"Mi dispiace, non riesco a ottenere il meteo per {city}."
         else:
-            response = f"Sorry, I could not fetch the weather information for {city}."
+            response = "Per favore, indicami una città."
 
         dispatcher.utter_message(text=response)
         return []
@@ -35,16 +38,14 @@ class ActionGetWeather(Action):
         base_url = "https://api.openweathermap.org/data/2.5/weather"
         params = {
             "q": city,
-            "units": "metric",    # gradi Celsius
+            "units": "metric",
+            "lang": "it",  # risposte meteo in italiano
             "appid": api_key
         }
 
         try:
-            print(f"API Requested URL : {base_url}?{params}")
             response = requests.get(base_url, params=params)
-            api_response = response.json()
-            print(f"API Response : {api_response}")
-            return api_response
+            return response.json()
         except requests.exceptions.RequestException as e:
-            print(f"API Request Error : {e}")
+            print(f"Errore durante la richiesta API: {e}")
             return None

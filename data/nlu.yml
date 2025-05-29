@@ -1,44 +1,96 @@
 version: "3.1"
 
 nlu:
-- intent: greet
+- intent: saluto
   examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+    - ciao
+    - salve
+    - buongiorno
+    - buonasera
+    - ehi
+    - ehi là
+    - ciao amico
+    - andiamo
+    - ciao a tutti
+    - buona giornata
+    - buon pomeriggio
+    - buon mattino
 
-- intent: goodbye
+- intent: arrivederci
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+    - a presto
+    - ci vediamo
+    - buona notte
+    - addio
+    - arrivederci
+    - alla prossima
+    - buona serata
+    - ci sentiamo
+    - ciao ciao
+    - ci vediamo dopo
 
-- intent: ask_weather
+- intent: chiedi_meteo
   examples: |
-    - How is the weather
-    - Tell me the weather
-    - Can you tell me about the weather 
-    - What's the weather like?
+    - com'è il tempo?
+    - che tempo fa?
+    - mi puoi dire che tempo fa?
+    - qual è la situazione meteo?
+    - raccontami il meteo
+    - com’è il meteo oggi?
+    - puoi parlarmi del meteo?
 
-- intent: get_weather
+- intent: dammi_meteo
   examples: |
-    - [London](city)
-    - [Berlin](city)
+    - [Londra](city)
+    - [Berlino](city)
     - [New York](city)
+    - [Tokyo](city)
+    - [Parigi](city)
+    - [Roma](city)
+    - [Madrid](city)
+    - [Pechino](city)
+    - [Shanghai](city)
+    - [Hong Kong](city)
+    - [Singapore](city)
+    - [Los Angeles](city)
+    - [San Francisco](city)
+    - [Chicago](city)
+    - [Toronto](city)
+    - [Vancouver](city)
+    - [Città del Messico](city)
+    - [San Paolo](city)
+    - [Buenos Aires](city)
+    - [Rio de Janeiro](city)
+    - [Dubai](city)
+    - [Abu Dhabi](city)
+    - [Doha](city)
+    - [Istanbul](city)
+    - [Il Cairo](city)
+    - [Johannesburg](city)
+    - [Nairobi](city)
+    - [Seul](city)
+    - [Bangkok](city)
+    - [Kuala Lumpur](city)
+    - [Giacarta](city)
+    - [Mumbai](city)
+    - [Delhi](city)
+    - [Bangalore](city)
+    - [Melbourne](city)
+    - [Sydney](city)
+    - [Auckland](city)
+    - [Lisbona](city)
+    - [Barcellona](city)
+    - [Amsterdam](city)
+    - [Bruxelles](city)
+    - [Vienna](city)
+    - [Praga](city)
+    - [Varsavia](city)
+    - [Copenaghen](city)
+    - [Stoccolma](city)
+    - [Oslo](city)
+    - [Helsinki](city)
+    - [Zurigo](city)
+    - [Ginevra](city)
+    - [Monaco](city)
+    - [Francoforte](city)
+    - [Atene](city)

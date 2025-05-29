@@ -2,16 +2,14 @@ version: "3.1"
 
 stories:
 
-- story: happy path
+- story: Percorso felice
   steps:
-    - intent: greet
-    - action: utter_greet
+    - intent: saluto
+    - action: utter_saluto
 
-- story: User asks for weather in specific city
+- story: L'utente chiede il meteo in una città specifica
   steps:
-    - intent: ask_weather
-    - action: utter_ask_weather
-    - intent: get_weather
-      entities:
-        - city: London
+    - intent: chiedi_meteo
+    - action: utter_chiedi_meteo
+    - intent: dammi_meteo
     - action: action_get_weather
