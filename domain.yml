@@ -15,7 +15,12 @@ slots:
     mappings:
       - type: from_entity
         entity: city
-        
+
+forms:
+  weather_form:
+    required_slots:
+      - city
+
 responses:
   utter_saluto:
     - text: "Ciao! Come posso aiutarti?"
@@ -23,11 +28,21 @@ responses:
   utter_arrivederci:
     - text: "Arrivederci! A presto."
 
+  # Chiamato se l’utente invoca chiedi_meteo senza city
   utter_chiedi_meteo:
-    - text: "Certo, puoi indicarmi la città?"
+    - text: "Certo, per quale città?"
+
+  # Question template usata dal form
+  utter_ask_weather_form_city:
+    - text: "In quale città desideri sapere il meteo?"
+
+  # Messaggio di conferma prima di action_get_weather
+  utter_submit_weather_form:
+    - text: "Perfetto, sto cercando il meteo per {city}…"
 
 actions:
   - action_get_weather
+  - validate_weather_form
 
 session_config:
   session_expiration_time: 60

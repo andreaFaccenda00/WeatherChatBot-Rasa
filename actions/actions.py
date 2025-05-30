@@ -2,6 +2,8 @@ from typing import Any, Text, Dict, List
 import requests
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk import FormValidationAction
+from rasa_sdk.types import DomainDict
 
 class ActionGetWeather(Action):
 
@@ -49,3 +51,25 @@ class ActionGetWeather(Action):
         except requests.exceptions.RequestException as e:
             print(f"Errore durante la richiesta API: {e}")
             return None
+
+
+from rasa_sdk import FormValidationAction
+from rasa_sdk.types import DomainDict
+
+class ValidateWeatherForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_weather_form"
+
+    async def validate_city(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        city = slot_value.strip()
+        if city.isnumeric() or len(city) < 2:
+            dispatcher.utter_message(text="Mi serve un nome di città valido, per favore riprova.")
+            return {"city": None}
+        return {"city": city.title()}
+

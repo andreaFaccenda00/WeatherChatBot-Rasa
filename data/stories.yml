@@ -7,9 +7,3 @@ stories:
     - intent: saluto
     - action: utter_saluto
 
-- story: L'utente chiede il meteo in una città specifica
-  steps:
-    - intent: chiedi_meteo
-    - action: utter_chiedi_meteo
-    - intent: dammi_meteo
-    - action: action_get_weather
